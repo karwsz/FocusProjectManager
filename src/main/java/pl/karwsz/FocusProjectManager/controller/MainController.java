@@ -10,7 +10,7 @@ public class MainController {
 
     @GetMapping
     public String main() {
-        return "Mapping";
+        return "<!DOCTYPE HTML><html><head><body><p style=\"color:blue;font-size:40px;\">Test</p></body></head></html>";
     }
 
     //
