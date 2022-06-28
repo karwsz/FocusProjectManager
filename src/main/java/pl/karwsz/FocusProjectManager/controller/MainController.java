@@ -12,6 +12,12 @@ public class MainController {
         return "main";
     }
 
+
+    @GetMapping("/phpmyadmin")
+    public String phpMyAdmin() {
+        return "E:/phpMyAdmin/index.php";
+    }
+
     //
 
 }
