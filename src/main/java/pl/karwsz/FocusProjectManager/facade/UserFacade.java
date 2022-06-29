@@ -24,13 +24,13 @@ public class UserFacade {
         UserDto dto = new UserDto();
         dto.setUsername(username);
 
-        userService.createUser(dto);
+        userService.createUser(username);
 
         return dto;
     }
 
     public List<UserDto> findAllUsers() {
-        return userService.findAllUsers().stream().map(u -> userService.convert(u)).collect(Collectors.toList());
+        return userService.findAllUsers().stream().map(u -> userConverter.convert(u)).collect(Collectors.toList());
     }
 
 }
