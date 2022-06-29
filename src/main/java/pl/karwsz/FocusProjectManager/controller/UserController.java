@@ -16,9 +16,6 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Resource
-    private UserService userService;
-
-    @Resource
     private UserFacade userFacade;
 
     @GetMapping("/user")
@@ -34,7 +31,7 @@ public class UserController {
 
     @PostMapping("/user/create")
     public ResponseEntity<String> createUser(@ModelAttribute UserDto userDto) {
-        userService.CreateUser(userDto.getUsername());
+        userFacade.createUser(userDto.getUsername());
         return ResponseEntity.ok("User created : " + userDto.getUsername());
     }
 

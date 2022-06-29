@@ -18,9 +18,15 @@ public class UserService {
     @Resource
     private UserConverter userConverter;
 
-    public User CreateUser(String userName) {
+    public User createUser(String userName) {
         User user = new User();
         user.setUsername(userName);
+        return userRepository.save(user);
+    }
+
+    public User createUser(UserDto dto) {
+        User user = new User();
+        user.setUsername(dto.getUsername());
         return userRepository.save(user);
     }
 
