@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.karwsz.FocusProjectManager.dto.UserDto;
 import pl.karwsz.FocusProjectManager.entity.User;
+import pl.karwsz.FocusProjectManager.facade.UserFacade;
 import pl.karwsz.FocusProjectManager.service.UserService;
 
 import javax.annotation.Resource;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Resource
-    private UserService userService;
+    private UserFacade userFacade;
 
     @GetMapping("/user")
     public String user() {
@@ -25,13 +26,12 @@ public class UserController {
     @GetMapping("/user/all")
     @ResponseBody
     public List<UserDto> getAllUsers() {
-        List<User> allUsers = userService.findAllUsers();
-        return allUsers.stream().map(user -> userService.convert(user)).collect(Collectors.toList());
+        return userFacade.findAllUsers();
     }
 
     @PostMapping("/user/create")
     public ResponseEntity<String> createUser(@ModelAttribute UserDto userDto) {
-        userService.CreateUser(userDto.getUsername());
+        userFacade.createUser(userDto.getUsername());
         return ResponseEntity.ok("User created : " + userDto.getUsername());
     }
 
